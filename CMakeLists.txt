@@ -6,6 +6,11 @@ cmake_minimum_required (VERSION 2.8)
 
 project (Mimick C)
 
+if(POLICY CMP0042)
+  # Allow @rpath in target's install name
+  cmake_policy(SET CMP0042 NEW)
+endif()
+
 include (CheckSymbolExists)
 include (GNUInstallDirs)
 
