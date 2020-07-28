@@ -72,7 +72,9 @@ va_list & mmk_assign(va_list & dst, va_list src) {
   mmk_struct_initialize((mmk_literal<type, __COUNTER__>::storage), __VA_ARGS__)
 
 #  define mmk_literal(type, value) \
-  (mmk_assign(mmk_literal<type, __COUNTER__>::storage, value))
+  (mmk_assign(mmk_literal<type, __COUNTER__>::storage, (type) value))
+
+#  define mmk_default_value(type) type{0}
 
 # else /* !defined __cplusplus */
 
@@ -81,6 +83,8 @@ va_list & mmk_assign(va_list & dst, va_list src) {
 #  define mmk_literal(type, value) ((type) value)
 
 #  define mmk_struct_literal(type, ...) ((type) { __VA_ARGS__ })
+
+#  define mmk_default_value(type) {0}
 
 # endif
 
